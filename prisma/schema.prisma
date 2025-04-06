@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./db/dev.db"
+}
+
+model User {
+  user_id       String    @id @default(uuid())
+  full_name     String
+  cne           String
+  date_of_birth DateTime
+  phone_number  String?
+  created_at    DateTime  @default(now())
+  last_logon    DateTime?
+  jwtoken       String?
+  is_active     Boolean   @default(true)
+
+  medicalReports MedicalReports[]
+}
+
+model Lab {
+  lab_id            String    @id @default(uuid())
+  lab_name          String
+  lab_logo          String?
+  lab_username      String
+  lab_password_hash String
+  totp              String?
+  created_at        DateTime  @default(now())
+  last_logon        DateTime?
+  jwtoken           String?
+  is_active         Boolean   @default(true)
+
+  apiKeys        ApiKeys[]
+  medicalReports MedicalReports[]
+}
+
+model ApiKeys {
+  id           Int      @id @default(autoincrement())
+  lab_id       String
+  api_key      String
+  is_activated Boolean  @default(true)
+  created_at   DateTime @default(now())
+  usage        Int      @default(0)
+
+  lab Lab @relation(fields: [lab_id], references: [lab_id], onDelete: Cascade)
+}
+
+model MedicalReports {
+  report_id             String    @id @default(uuid())
+  lab_id                String?
+  user_id               String?
+  report_title          String
+  report_description    String?
+  created_at            DateTime  @default(now())
+  report_url            String
+  report_thumbnail_url  String?
+  processed_report_data String?
+  seen_by_user          Boolean   @default(false)
+  seen_at               DateTime?
+
+  user User? @relation(fields: [user_id], references: [user_id])
+  lab  Lab?  @relation(fields: [lab_id], references: [lab_id])
+}

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import LangSelector from "./LangSelector";
+import Image from "next/image";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +30,21 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <nav className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-pink-200 to-yellow-100 shadow-md fade-in-up">
+          <div className="flex items-center space-x-2">
+            <div className="w-10 h-10 bg-blue-300 rounded-full flex items-center justify-center">
+              <Image alt="" width={75} height={75} src="/images/lablogo.png" />
+            </div>
+            <span className="text-lg font-semibold">Labview</span>
+          </div>
+          <div className="flex space-x-4 items-center">
+            {/* <a href="home.html" className="px-4 py-2 rounded-full bg-pink-100 hover:bg-pink-200">Home</a> */}
+            <Link href="login" className="px-4 py-2 rounded-full bg-pink-100 hover:bg-pink-200">Login</Link>
+            <Link href="about" className="px-4 py-2 rounded-full bg-pink-100 hover:bg-pink-200">About</Link>
+            <Link href="registerLab" className="px-4 py-2 rounded-full bg-pink-100 hover:bg-pink-200">Register A Lab</Link>
+            <LangSelector />
+          </div>
+        </nav>
         {children}
       </body>
     </html>
