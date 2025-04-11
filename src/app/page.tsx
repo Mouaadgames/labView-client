@@ -1,17 +1,18 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <>
-    
 
-      <div className="absolute w-full h-screen overflow-hidden z-0">
+
+      <div className="absolute w-full h-screen overflow-hidden -z-10">
         <video autoPlay muted loop className="w-full h-full object-cover">
-          <source src="images/3195727-hd_1280_720_25fps.mp4" type="video/mp4" />
+          <source src="/bgvideo.mp4" type="video/mp4" />
         </video>
       </div>
 
-      
+
 
       <section className="relative z-10 text-center py-32 px-4 min-h-screen flex flex-col justify-center items-center">
         <h1 className="text-4xl md:text-6xl font-bold text-purple-800 mb-4 lang"
@@ -26,8 +27,8 @@ export default function Home() {
           AI-powered health analysis made simple.
         </p>
 
-        <a href="testanalysis.html" className="bg-pink-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-pink-600 transition lang"
-          data-en="View Your Test" data-ar="عرض اختبارك" data-fr="Voir votre test">View Your Test</a>
+        <Link href="myTests" className="bg-pink-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-pink-600 transition lang"
+          data-en="View Your Test" data-ar="عرض اختبارك" data-fr="Voir votre test">View Your Test</Link>
       </section>
     </>
   );

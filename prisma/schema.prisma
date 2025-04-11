@@ -18,7 +18,8 @@ model User {
   jwtoken       String?
   is_active     Boolean   @default(true)
 
-  medicalReports MedicalReports[]
+  medicalReports    MedicalReports[]
+  confirmationCodes confirmationCodes[]
 }
 
 model Lab {
@@ -32,6 +33,7 @@ model Lab {
   last_logon        DateTime?
   jwtoken           String?
   is_active         Boolean   @default(true)
+  location          String
 
   apiKeys        ApiKeys[]
   medicalReports MedicalReports[]
@@ -50,17 +52,25 @@ model ApiKeys {
 
 model MedicalReports {
   report_id             String    @id @default(uuid())
-  lab_id                String?
-  user_id               String?
+  lab_id                String
+  user_id               String
   report_title          String
-  report_description    String?
+  reportReady           Boolean
   created_at            DateTime  @default(now())
-  report_url            String
+  report_pdf_url        String?
   report_thumbnail_url  String?
   processed_report_data String?
   seen_by_user          Boolean   @default(false)
   seen_at               DateTime?
 
-  user User? @relation(fields: [user_id], references: [user_id])
-  lab  Lab?  @relation(fields: [lab_id], references: [lab_id])
+  user User @relation(fields: [user_id], references: [user_id])
+  lab  Lab  @relation(fields: [lab_id], references: [lab_id])
+}
+
+model confirmationCodes {
+  id           String   @id @default(uuid())
+  value        String
+  user         User     @relation(fields: [user_id], references: [user_id])
+  user_id      String
+  creationDate DateTime @default(now())
 }

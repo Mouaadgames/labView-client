@@ -4,7 +4,7 @@ function page() {
       <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gray-200 rounded-full flex items-center z-0 "></div>
       <div className="absolute top-24 left-1/2 transform -translate-x-1/2 w-72 h-72 bg-pink-200 rounded-full flex z-0scale-in z-0 delay-200"></div>
       <div id="logo" className="absolute top-32 left-1/2 transform -translate-x-1/2 w-48 h-48 bg-blue-300 rounded-full z-0 flex items-center justify-center  text-4xl delay-300">
-        <img src="images/lablogo.png" />
+        <img src="/lablogo.png" />
       </div>
 
 

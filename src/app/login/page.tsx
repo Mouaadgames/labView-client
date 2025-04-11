@@ -1,5 +1,13 @@
-function page() {
-  const currentDate = new Date()
+import { login } from "@/lib/serverActions/login"
+
+async function page({
+  searchParams
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+
+
+  const errorMsg = (await searchParams).e
   return (
     <>
 
@@ -12,16 +20,16 @@ function page() {
             {/* <span className="bg-gradient-to-r from-yellow-200 to-pink-200 text-black px-4 py-1 rounded-full text-sm">Welcome again</span> */}
           </div>
 
-          <form className="space-y-4">
+          <form action={login} className="space-y-4">
             <div className="text-left">
-              <label htmlFor="CNI" className="block font-semibold">CNI:</label>
-              <input type="text" id="CNI" placeholder="P123456"
+              <label htmlFor="CNE" className="block font-semibold">CNE:</label>
+              <input type="text" id="CNI" name="CNI" placeholder="E123456"
                 className="w-full px-4 py-2 border rounded-full text-center focus:outline-none focus:ring-2 focus:ring-pink-300" />
             </div>
 
             <div className="text-left">
               <label htmlFor="birthDate" className="block font-semibold">Birth Date:</label>
-              <input type="Date" id="birthDate" placeholder="" max={(new Date()).toISOString().split('T')[0]}
+              <input type="date" name="date" id="birthDate" placeholder="" max={(new Date()).toISOString().split('T')[0]}
                 className="w-full px-4 py-2 border rounded-full text-center focus:outline-none focus:ring-2 focus:ring-pink-300" />
             </div>
 
@@ -32,9 +40,13 @@ function page() {
             <button type="submit" className="w-full bg-gradient-to-r from-yellow-200 to-pink-300 py-2 rounded-full font-semibold hover:opacity-90 transition cursor-pointer">
               Login
             </button>
-            <div className="text-red-400">
-              You are have no number registered to you
-            </div>
+            {
+              errorMsg && (
+                <div className="text-red-400">
+                  You are have no number registered to you
+                </div>
+              )
+            }
             <div className="flex justify-between items-center text-sm pt-2">
               <span>You will receive and SMS verification code</span>
             </div>

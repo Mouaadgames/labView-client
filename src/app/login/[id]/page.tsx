@@ -1,6 +1,55 @@
-function page() {
+import { SMSConfirmation } from "@/lib/serverActions/login"
+
+async function page({
+  searchParams,
+  params
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>,
+  params: Promise<{ id: string }>
+}) {
+
+
+  const errorMsg = (await searchParams).e
+  const id = (await params).id
   return (
-    <div>Enter the SMS verification code:</div>
+    <>
+
+      <main className="relative flex flex-col items-center justify-center min-h-[calc(100vh-72px)] px-6 py-12 text-center">
+
+
+        <div className="relative z-10 mt-10 bg-white border-2 border-black rounded-xl p-6 w-full max-w-md fade-in-up space-y-4">
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-bold text-left">SMS Verification:</h2>
+            {/* <span className="bg-gradient-to-r from-yellow-200 to-pink-200 text-black px-4 py-1 rounded-full text-sm">Welcome again</span> */}
+          </div>
+
+          <form action={SMSConfirmation} className="space-y-4">
+            <input type="hidden" value={id} name="SMSId" />
+            <div className="text-left">
+              <label htmlFor="CNE" className="block font-semibold">Code :</label>
+              <input type="text" id="SMSCode" name="SMSCode" placeholder=""
+                className="w-full px-4 py-2 border rounded-full text-center focus:outline-none focus:ring-2 focus:ring-pink-300" />
+            </div>
+
+            {/* <p className="text-xs text-gray-600 text-left pl-1">
+              You have forgot your password, <a href="#" className="text-blue-600 underline">click here</a>
+            </p> */}
+
+              {
+                errorMsg && (
+                  <div className="text-red-400">
+                    Verification code is not correct
+                  </div>
+                )
+              }
+            <button type="submit" className="w-full bg-gradient-to-r from-yellow-200 to-pink-300 py-2 rounded-full font-semibold hover:opacity-90 transition cursor-pointer">
+              Confirms
+            </button>
+
+          </form>
+        </div>
+      </main>
+    </>
   )
 }
 export default page
