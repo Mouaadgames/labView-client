@@ -31,7 +31,7 @@ function TestCard({
       </p>
       <div className="flex justify-between items-center">
         <span className="text-gray-500">{creationDate}</span>
-        <Link href={"/myTests/" + id} className="text-red-600 font-semibold hover:underline">View Result →</Link>
+        {status ? <Link href={"/myTests/" + id} className="text-red-600 font-semibold hover:underline">View Result →</Link> : <p></p>}
       </div>
     </div>
 

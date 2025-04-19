@@ -9,7 +9,7 @@ function page() {
       <div className="relative z-10 max-w-xl mt-20 fade-in-up delay-500 shadow-2xl rounded-xl border border-gray-200 p-6 backdrop-blur-sm bg-[#00000011]">
         <h2 className="text-purple-600 text-xl font-bold mb-4">About:</h2>
         <p className="text-black text-lg leading-relaxed">
-          This website was crafted by <strong>The Night Knights</strong>, a dynamic team composed of
+          This website was crafted by a team composed of
           <span className="text-green-500 font-semibold text-nowrap"> Ait Ouflih Anouar</span>,
           <span className="text-pink-500 font-semibold text-nowrap"> El Barrik Mouaad</span>, and
           <span className="text-blue-500 font-semibold text-nowrap"> El Idrissi Abdellah</span>,

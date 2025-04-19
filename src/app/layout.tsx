@@ -58,10 +58,10 @@ export default async function RootLayout({
           </Link>
           <div className="flex space-x-2 lg:space-x-4 items-center">
             {/* <a href="home.html" className="px-4 py-2 rounded-full bg-pink-100 hover:bg-pink-200">Home</a> */}
-            {!se && <Link href="login" className="px-2 lg:px-4 py-1 lg:py-2 rounded-full bg-pink-100 hover:bg-pink-200">Login</Link>}
-            {!!se && <Link href="myTests" className="px-2 lg:px-4 py-1 lg:py-2 rounded-full bg-pink-100 hover:bg-pink-200">My Tests</Link>}
-            <Link href="about" className="px-2 lg:px-4 py-1 lg:py-2 hidden md:block rounded-full bg-pink-100 hover:bg-pink-200">About Us</Link>
-            {!se && <Link href="registerLab" className="px-2 lg:px-4 py-1 lg:py-2 rounded-full bg-pink-100 hover:bg-pink-200">Register A Lab</Link>}
+            {!se && <Link href="/login" className="px-2 lg:px-4 py-1 lg:py-2 rounded-full bg-pink-100 hover:bg-pink-200">Login</Link>}
+            {!!se && <Link href="/myTests" className="px-2 lg:px-4 py-1 lg:py-2 rounded-full bg-pink-100 hover:bg-pink-200">My Tests</Link>}
+            <Link href="/about" className="px-2 lg:px-4 py-1 lg:py-2 hidden md:block rounded-full bg-pink-100 hover:bg-pink-200">About Us</Link>
+            {!se && <Link href="/registerLab" className="px-2 lg:px-4 py-1 lg:py-2 rounded-full bg-pink-100 hover:bg-pink-200">Register A Lab</Link>}
             {!!se && <form action={logout}> <button className="px-2 lg:px-4 py-1 lg:py-2 rounded-full bg-pink-100 hover:bg-pink-200">Logout</button></form>}
             <GoogleTranslate prefLangCookie={await getPrefLangCookie()} />
           </div>

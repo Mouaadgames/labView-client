@@ -2,15 +2,18 @@
 
 import { useEffect, useState } from "react";
 import axios from 'axios'
-import pdfjs from 'pdfjs-dist'
-function AIParagraph({ data }: { data: string }) {
+function AIParagraph({ id }: { id: string }) {
   const [isLoading, setIsLoading] = useState(true);
   const [AiParagraph, setAiParagraph] = useState('');
   useEffect(() => {
     async function main() {
-      setAiParagraph((await axios.post("/api", {
-        data
-      })).data.text)
+      const aiRes = (await axios.post("/api", {
+        id
+      })).data.text
+      console.log(aiRes);
+
+      setAiParagraph(aiRes)
+
       setIsLoading(false)
     }
     main()
@@ -23,9 +26,7 @@ function AIParagraph({ data }: { data: string }) {
         isLoading ? (
           <div className="loader mx-auto"></div>
         ) : (
-          <p>
-            {AiParagraph}
-          </p>
+          <div dangerouslySetInnerHTML={{ __html: AiParagraph }}/>
         )
       }
     </>
