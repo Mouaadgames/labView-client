@@ -1,45 +1,34 @@
 "use client"
 
-import { useState } from "react";
-
-function AIParagraph({
-  data
-}:{
-  data:string
-}) {
+import { useEffect, useState } from "react";
+import axios from 'axios'
+import pdfjs from 'pdfjs-dist'
+function AIParagraph({ data }: { data: string }) {
   const [isLoading, setIsLoading] = useState(true);
   const [AiParagraph, setAiParagraph] = useState('');
-  const [AiScore, setAiScore] = useState('');
-  const [AiAdvice, setAiAdvice] = useState('');
+  useEffect(() => {
+    async function main() {
+      setAiParagraph((await axios.post("/api", {
+        data
+      })).data.text)
+      setIsLoading(false)
+    }
+    main()
+  }, []);
+
 
   return (
-    <div>
-      <span>Health score : <span style={{ color: "rgb(255,0,0)" }}> {
-        isLoading ? (<span>
-          ...
-        </span>) : (<span>
-          {AiScore}
-        </span>)
-      }
-      </span> /100 <span className="relative ml-2 cursor-pointer"> <div className="border rounded-full aspect-square absolute inset-y-0 left-0 -translate-x-1/3 scale-75"></div> ? </span></span>
-      <h3>Paragraph Summery</h3>
+    <>
       {
-        isLoading ? (<p>
-          ...
-        </p>) : (<p>
-          {AiParagraph}
-        </p>)
+        isLoading ? (
+          <div className="loader mx-auto"></div>
+        ) : (
+          <p>
+            {AiParagraph}
+          </p>
+        )
       }
-
-      <h3>Some Advice</h3>
-      {
-        isLoading ? (<p>
-          ...
-        </p>) : (<p>
-          {AiAdvice}
-        </p>)
-      }
-    </div>
+    </>
   )
 }
 export default AIParagraph

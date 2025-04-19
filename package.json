@@ -9,14 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^6.5.0",
-    "jose": "^6.0.10",
-    "next": "15.2.4",
-    "pdfjs-dist": "^5.1.91",
-    "react": "^19.0.0",
     "@azure-rest/ai-inference": "latest",
     "@azure/core-auth": "latest",
     "@azure/core-sse": "latest",
+    "@prisma/client": "^6.5.0",
+    "axios": "^1.8.4",
+    "jose": "^6.0.10",
+    "next": "15.2.4",
+    "pdfjs-dist": "^3.4.120",
+    "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
